@@ -19,6 +19,7 @@ export default class CreateUser extends Component {
     });
   }
 
+  // Creates a new user using the username value in state
   onSubmit(e) {
     e.preventDefault();
 

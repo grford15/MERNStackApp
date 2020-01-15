@@ -13,7 +13,9 @@ const exerciseSchema = new Schema(
     timestamps: true,
   },
 );
+//sets up the exerciseSchema with 4 fields of varying types
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);
+//creates a new model object with the exerciseSchema prototype
 
 module.exports = Exercise;

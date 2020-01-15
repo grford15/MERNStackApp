@@ -22,6 +22,7 @@ export default class CreateExercise extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // Gets all the users from the database & assigns them to the users & username states
   componentDidMount() {
     axios.get('http://localhost:5000/users/').then(response => {
       if (response.data.length > 0) {
@@ -33,6 +34,7 @@ export default class CreateExercise extends Component {
     });
   }
 
+  // TODO: refactor to one function
   onChangeUsername(e) {
     this.setState({
       username: e.target.value,
@@ -57,6 +59,7 @@ export default class CreateExercise extends Component {
     });
   }
 
+  // creates a new exercise using the values in state
   onSubmit(e) {
     e.preventDefault();
 

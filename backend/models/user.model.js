@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//brings in mongoose & its schmema method
 
 const userSchema = new Schema(
   {
@@ -15,6 +16,7 @@ const userSchema = new Schema(
     timestamps: true,
   },
 );
+// sets up the userschema with the one field with the flags for it
 
 const User = mongoose.model('User', userSchema);
 

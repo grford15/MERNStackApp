@@ -22,6 +22,7 @@ export default class EditExercise extends Component {
   }
 
   componentDidMount() {
+    // gets all the exercises from the API & sets them to state
     axios(
       'http://localhost:5000/exercises/' + this.props.match.params.id,
     )
@@ -35,8 +36,8 @@ export default class EditExercise extends Component {
       )
       .catch(error => console.log(error));
 
-    axios
-      .get('http://localhost:5000/users/')
+    // gets all the users from the API & sets them to state
+    axios('http://localhost:5000/users/')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -49,6 +50,8 @@ export default class EditExercise extends Component {
       });
   }
 
+  // Methods that take the data from the form & set it to state
+  //TODO: Make one reusable function -- NOT DRY
   onChangeUsername(e) {
     this.setState({
       username: e.target.value,
@@ -73,9 +76,11 @@ export default class EditExercise extends Component {
     });
   }
 
+  // The function that updates the exercise database
   onSubmit(e) {
     e.preventDefault();
 
+    //creates a new exercise object with the values in state
     const exercise = {
       username: this.state.username,
       description: this.state.description,
@@ -85,6 +90,7 @@ export default class EditExercise extends Component {
 
     console.log(exercise);
 
+    // using the exercise object above this updates the database
     axios
       .post(
         'http://localhost:5000/exercises/update/' +

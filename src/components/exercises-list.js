@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+// Creates an exercise component to use to render each exercise in the table displayed
 const Exercise = props => (
   <tr>
     <td>{props.exercise.username}</td>
@@ -41,12 +42,14 @@ export default class ExercisesList extends Component {
     this.exerciseList = this.exerciseList.bind(this);
   }
 
+  // makes the API call getting all the exercises & assigns them to the state
   componentDidMount() {
     axios('http://localhost:5000/exercises')
       .then(res => this.setState({ exercises: res.data }))
       .catch(err => console.log(err));
   }
 
+  // deletes the exercise using the ID from the parameter, then updates the list that is displayed so the deleted one will not show
   deleteExercise(id) {
     axios
       .delete(`http://localhost:5000/exercises/${id}`)
@@ -57,6 +60,7 @@ export default class ExercisesList extends Component {
     });
   }
 
+  // a method the maps over the exercises in the state then returns them as an exercise component
   exerciseList() {
     return this.state.exercises.map(currentExercise => {
       return (
